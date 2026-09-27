@@ -203,9 +203,9 @@ Configuración observada en el modelo:
 
 El modelo de cámara tiene masa e inercia, pero no contiene un bloque de colisión. Esto queda como punto para analizar cuando se prepare el modelo propio.
 
-### Prueba pendiente de la cámara
+### Bridge de cámara hacia ROS 2
 
-Falta ejecutar y registrar el bridge hacia ROS 2:
+Se ejecutó y registró el bridge hacia ROS 2:
 
 ```bash
 source /opt/ros/jazzy/setup.zsh
@@ -242,3 +242,18 @@ Fue temporal:
 
 Por eso el siguiente trabajo es convertir las pruebas en modelo, mundo, configuración YAML y launch reproducibles dentro del repositorio del equipo.
 
+
+## 9. Resultados del bridge de cámara e IMU
+
+- Tópico de imagen: `/camera/image_raw`.
+- Información de cámara: `/camera/camera_info`.
+- Tópico de IMU: `/imu`.
+- Resolución observada: 1280 × 960.
+- Frame de cámara: `camera_link`.
+- Frame de IMU: `base_link`.
+- Frecuencia observada de cámara: aproximadamente 18.6 Hz.
+- Frecuencia observada de IMU: aproximadamente 233.8 Hz.
+- Evidencia: `evidence/2026-09-27/`.
+
+La cámara está configurada a 30 Hz, pero la frecuencia observada fue menor.
+Esto debe analizarse junto con el Real Time Factor y el rendimiento del computador.

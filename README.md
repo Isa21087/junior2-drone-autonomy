@@ -36,9 +36,10 @@ La base técnica fue validada el 27 de septiembre de 2026 en el computador de Is
 - IMU del X500 publica en Gazebo.
 - El LiDAR 2D publica 1080 mediciones a aproximadamente 30 Hz.
 - El LiDAR fue comunicado a ROS 2 en `/scan` mediante `ros_gz_bridge`.
-- La cámara monocular genera imagen en Gazebo y muestra obstáculos del escenario.
+- La cámara monocular genera imagen en Gazebo y fue comunicada a ROS 2.
+- La IMU fue comunicada a ROS 2.
 
-La comunicación de la cámara hacia ROS 2 todavía está pendiente de cerrar y registrar. Tampoco existe aún un modelo combinado propio, un mundo guardado, un `bridge.yaml`, un launch general o la visualización completa en RViz.
+La cámara y la IMU ya fueron comunicadas y registradas en ROS 2. Tampoco existe aún un modelo combinado propio, un mundo guardado, un `bridge.yaml`, un launch general o la visualización completa en RViz.
 
 ## Organización local recomendada
 
