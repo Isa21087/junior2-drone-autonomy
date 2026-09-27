@@ -1,0 +1,26 @@
+# ROS 2 / colcon
+build/
+install/
+log/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Editors and operating system
+.vscode/
+.idea/
+*~
+.DS_Store
+
+# Runtime logs and large captures
+*.ulg
+*.bag
+*.db3
+*.mcap
+
+# PX4 and local environments live outside this repository
+PX4-Autopilot/
+px4_venv/
