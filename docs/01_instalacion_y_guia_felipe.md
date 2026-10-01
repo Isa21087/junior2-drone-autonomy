@@ -185,33 +185,3 @@ Registrar:
 Trabajar en una rama propia. Antes de fusionar, revisar el resultado
 entre ambos.
 
-## Capacidades comprobadas
-
-- Bridge de imagen y CameraInfo mediante YAML y launch.
-- Bridge de IMU mediante YAML y launch.
-- Bridge de LiDAR mediante YAML y launch.
-- Compilación del paquete en la estructura nueva de `ras_ws`.
-
-Los sensores se probaron en variantes separadas de PX4.
-Todavía no se verificó su visualización completa mediante TF/RViz.
-
-La cámara produjo aproximadamente 18.6 Hz en la prueba inicial,
-aunque está configurada a 30 Hz. La causa de esa diferencia
-no está determinada; se debe revisar el tiempo de simulación,
-rendimiento y medición antes de atribuirla a un componente.
-
-## Próximos pasos de la clase
-
-- Reproducir la base en el computador de Felipe.
-- Revisar juntos tópicos, frames y archivos de configuración.
-- Crear y validar la descripción URDF/Xacro y TF/RViz.
-- Preparar un mundo SDF guardado mediante tareas compartidas.
-
-## Pendientes posteriores
-
-- Revisar las poses del LiDAR y las propiedades físicas de los sensores.
-- Preparar un modelo combinado propio.
-- Crear un launch general.
-- Integrar ROS 2 con PX4 mediante DDS y px4_msgs.
-- Incorporar QGroundControl a las pruebas de vuelo.
-- Avanzar hacia mapeo, navegación y misión según la propuesta aprobada.
