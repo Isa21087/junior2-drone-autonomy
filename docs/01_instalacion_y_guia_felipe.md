@@ -35,7 +35,7 @@ Comprobación inicial:
 ```bash
 lsb_release -ds
 ls /opt/ros
-source /opt/ros/jazzy/setup.zsh
+source /opt/ros/jazzy/setup.bash
 printenv ROS_DISTRO
 command -v ros2
 command -v gz
@@ -96,7 +96,7 @@ sudo apt install \
 ## 5. Probar la base
 
 ```bash
-source /opt/ros/jazzy/setup.zsh
+source /opt/ros/jazzy/setup.bash
 source ~/Universidad/RAS/px4_venv/bin/activate
 cd ~/Universidad/RAS/PX4-Autopilot
 make px4_sitl gz_x500
@@ -134,14 +134,13 @@ Si el repositorio ya está clonado, no repetir el comando.
 En una terminal nueva, sin activar el entorno virtual de PX4:
 
 ```bash
-source /opt/ros/jazzy/setup.zsh
+source /opt/ros/jazzy/setup.bash
 cd ~/Universidad/RAS/ras_ws
 colcon build --symlink-install --packages-select junior2_drone_gz
-source install/setup.zsh
+source install/setup.bash
 ```
 
-Estos comandos usan zsh. Si se utiliza bash, cargar `setup.bash`
-en lugar de `setup.zsh`.
+Esta guía utiliza bash, que es el shell configurado en el computador de Felipe.
 
 ## 7. Reproducir un bridge
 

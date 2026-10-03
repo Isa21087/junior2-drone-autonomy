@@ -1,5 +1,9 @@
 # Uso de los bridges
 
+Estos comandos corresponden a pruebas ya realizadas y validadas por el equipo. No es necesario repetirlas salvo que se quiera reproducir la base en otro computador o verificar cambios posteriores.
+
+Para la preparación del entorno, compilación del workspace y organización de terminales, seguir `01_instalacion_y_guia_felipe.md`.
+
 Antes de usar un bridge debe ejecutarse la variante correspondiente de PX4.
 
 ## Cámara e IMU

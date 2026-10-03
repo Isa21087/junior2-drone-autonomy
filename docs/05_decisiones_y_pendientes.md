@@ -16,11 +16,15 @@ Revisión de trabajo:
 
 Ambos integrantes deben usarla mientras se construye la base. Un cambio de revisión debe quedar documentado y probarse en ambos computadores.
 
-### 3. Separar responsabilidades de paquetes
+### 3. Estructura de paquetes prevista
 
-- `junior2_drone_description`: qué es el robot para ROS 2, TF y RViz.
-- `junior2_drone_gz`: cómo se simula, sus sensores, modelos y mundo.
-- `junior2_drone_bringup`: cómo se inicia e integra el sistema.
+La arquitectura del proyecto se organizará progresivamente en paquetes con responsabilidades separadas:
+
+- `junior2_drone_description`: descripción del robot para ROS 2, TF y RViz. Pendiente de creación.
+- `junior2_drone_gz`: simulación, sensores, modelos y mundo. Es el paquete existente actualmente.
+- `junior2_drone_bringup`: inicio e integración general del sistema. Pendiente de creación.
+
+Los paquetes pendientes se crearán cuando se aborden esas capacidades. No es necesario crearlos antes de utilizarlos.
 
 ### 4. Validar por capas
 
