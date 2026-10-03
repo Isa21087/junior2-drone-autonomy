@@ -2,7 +2,9 @@
 
 ## Propósito
 
-Reproducir la base que ya fue validada por Isabela y comenzar la parte del modelo y del mundo. Al terminar esta guía, ambos computadores deben usar las mismas versiones y deben poder iniciar el X500.
+Reproducir y comprender la base validada por Isabela. Esta guía sirve
+para incorporar a Felipe al proyecto. Las responsabilidades posteriores
+se comparten por pilares según `04_plan_de_trabajo.md`.
 
 ## 1. Entender qué componente hace qué
 
@@ -33,7 +35,7 @@ Comprobación inicial:
 ```bash
 lsb_release -ds
 ls /opt/ros
-source /opt/ros/jazzy/setup.zsh
+source /opt/ros/jazzy/setup.bash
 printenv ROS_DISTRO
 command -v ros2
 command -v gz
@@ -94,7 +96,7 @@ sudo apt install \
 ## 5. Probar la base
 
 ```bash
-source /opt/ros/jazzy/setup.zsh
+source /opt/ros/jazzy/setup.bash
 source ~/Universidad/RAS/px4_venv/bin/activate
 cd ~/Universidad/RAS/PX4-Autopilot
 make px4_sitl gz_x500
@@ -116,64 +118,69 @@ make px4_sitl gz_x500_mono_cam
 
 Detén la simulación anterior con `Ctrl+C` antes de iniciar otra variante.
 
-## 6. Tarea asignada a Felipe: modelo y mundo
+## 6. Clonar y compilar el proyecto del equipo
 
-### Parte A — comprender los modelos existentes
+Después de aceptar la invitación y tener ROS 2 Jazzy, Gazebo Harmonic
+y colcon disponibles:
 
-Revisar sin modificar:
-
-```text
-Tools/simulation/gz/models/x500/model.sdf
-Tools/simulation/gz/models/x500_base/model.sdf
-Tools/simulation/gz/models/x500_lidar_2d/model.sdf
-Tools/simulation/gz/models/lidar_2d_v2/model.sdf
-Tools/simulation/gz/models/x500_mono_cam/model.sdf
-Tools/simulation/gz/models/mono_cam/model.sdf
+```bash
+mkdir -p ~/Universidad/RAS/ras_ws/src
+cd ~/Universidad/RAS/ras_ws/src
+git clone https://github.com/Isa21087/junior2-drone-autonomy.git
 ```
 
-Entregar una tabla breve con:
+Si el repositorio ya está clonado, no repetir el comando.
 
-- Modelo incluido por cada archivo.
-- Links y joints añadidos.
-- Parent y child de los joints de sensores.
-- Pose de cada sensor respecto a `base_link`.
-- Masa, centro de masa e inercia.
-- Diferencia entre visual y collision.
-- Nombre y parámetros principales del sensor.
+En una terminal nueva, sin activar el entorno virtual de PX4:
 
-### Parte B — preparar el escenario reproducible
+```bash
+source /opt/ros/jazzy/setup.bash
+cd ~/Universidad/RAS/ras_ws
+colcon build --symlink-install --packages-select junior2_drone_gz
+source install/setup.bash
+```
 
-Crear, dentro del paquete `junior2_drone_gz` cuando el equipo lo inicialice, un mundo SDF de pruebas que contenga como mínimo:
+Esta guía utiliza bash, que es el shell configurado en el computador de Felipe.
 
-- Luz.
-- Ground plane con colisión.
-- Gravedad y física explícitas.
-- Obstáculos con geometrías simples.
-- Espacio suficiente para probar LiDAR y cámara.
+## 7. Reproducir un bridge
 
-El primer mundo puede ser pequeño y controlado. El mundo de búsqueda y rescate con mayor complejidad se construirá progresivamente después de validar la integración.
+Seguir `02_ejecucion_bridges.md`:
 
-### Parte C — modelo combinado del equipo
+1. Iniciar la variante correspondiente de PX4 en una terminal.
+2. Iniciar el launch del bridge en otra.
+3. Comprobar los tópicos ROS 2 en una tercera.
 
-Después de terminar A y B, crear una copia adaptada dentro del repositorio del equipo que combine el X500 con LiDAR 2D y cámara. No editar los originales de PX4.
+Elegir inicialmente cámara/IMU o LiDAR. Las pruebas actuales utilizan
+modelos separados; no es necesario combinarlos para reproducir la base.
 
-Antes de declarar terminado el modelo combinado, verificar:
+## 8. Primera actividad compartida
 
-- El dron aparece sin temblar ni desplazarse solo.
-- Los links de sensores tienen posición coherente.
-- Las masas e inercias están definidas.
-- Las colisiones usan geometrías simples.
-- Los sensores publican en Gazebo.
-- Los nombres de frames están documentados.
+Felipe reproduce una prueba y registra sus resultados.
+Isabela explica los archivos YAML y launch existentes.
+Después, ambos revisan el recorrido:
 
-## 7. Evidencia que Felipe debe dejar
+Sensor → tópico de Gazebo → bridge → tópico de ROS 2.
 
-- Comandos usados y versiones.
-- Captura del X500 ejecutándose.
-- Salida de `git rev-parse HEAD` para PX4.
-- Tabla de análisis de modelos.
-- Archivo del mundo, cuando esté listo.
-- Instrucciones para que Isabela reproduzca su trabajo.
+Revisar también estos archivos originales de PX4:
 
-Cada cambio debe realizarse en una rama propia y luego revisarse entre ambos.
+- `Tools/simulation/gz/models/x500/model.sdf`
+- `Tools/simulation/gz/models/x500_lidar_2d/model.sdf`
+- `Tools/simulation/gz/models/x500_mono_cam/model.sdf`
+
+El objetivo inicial es identificar qué modelo incluyen y qué sensor añaden.
+La creación del mundo y del modelo combinado se planificará después,
+con tareas complementarias para ambos.
+
+## 9. Evidencia
+
+Registrar:
+
+- Revisión de PX4 utilizada.
+- Variante ejecutada.
+- Comando del launch.
+- Tópico recibido y frame.
+- Resultado de la prueba y dificultades encontradas.
+
+Trabajar en una rama propia. Antes de fusionar, revisar el resultado
+entre ambos.
 
